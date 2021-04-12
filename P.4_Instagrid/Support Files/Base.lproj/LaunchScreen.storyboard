@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="ThirstySoftRegular.otf">
+            <string>ThirstySoftRegular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="shutter" translatesAutoresizingMaskIntoConstraints="NO" id="nHn-PK-zv1">
+                                <rect key="frame" x="94" y="229" width="226" height="278"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="278" id="gUb-X1-FgN"/>
+                                    <constraint firstAttribute="width" constant="226" id="vr1-5q-8MU"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagrid Corp." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hz0-Hf-E5C">
+                                <rect key="frame" x="109.33333333333333" y="515" width="195.33333333333337" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="n7b-Gy-cCx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ThirstySoftRegular" family="Thirsty Soft" pointSize="30"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" red="0.71764705882352942" green="0.84313725490196079" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="nHn-PK-zv1" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Mud-ad-Cb9"/>
+                            <constraint firstItem="nHn-PK-zv1" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="YMI-cU-2OU"/>
+                            <constraint firstItem="nHn-PK-zv1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="229" id="f56-CT-ugA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Hz0-Hf-E5C" secondAttribute="bottom" constant="182" id="kQx-Ax-TxV"/>
+                            <constraint firstItem="Hz0-Hf-E5C" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="o42-ke-6qg"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.173913043478265" y="374.18478260869568"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="shutter" width="512" height="512"/>
+    </resources>
+</document>
