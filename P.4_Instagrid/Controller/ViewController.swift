@@ -101,6 +101,40 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         changeGridAndMarkButton(tappedButton.rightButton)
     }
     
+    enum tappedButton {
+        case leftButton, centerButton, rightButton
+    }
+    
+    private func changeGridAndMarkButton(_ display: tappedButton){
+        switch display {
+        case .leftButton :
+            leftButtonIsSelected.isHidden = false
+            leftButtonGrid.isHidden = false
+            centerButtonIsSelected.isHidden = true
+            centerButtonGrid.isHidden = true
+            rightButtonIsSelected.isHidden = true
+            rightButtonGrid.isHidden = true
+            
+        case .centerButton :
+            centerButtonIsSelected.isHidden = false
+            centerButtonGrid.isHidden = false
+            rightButtonIsSelected.isHidden = true
+            leftButtonIsSelected.isHidden = true
+            rightButtonGrid.isHidden = true
+            leftButtonGrid.isHidden = true
+            
+        case .rightButton :
+            rightButtonIsSelected.isHidden = false
+            rightButtonGrid.isHidden = false
+            centerButtonIsSelected.isHidden = true
+            centerButtonGrid.isHidden = true
+            leftButtonIsSelected.isHidden = true
+            leftButtonGrid.isHidden = true
+        }
+    }
+
+    
+//MARK: - Image Picker
     
     var index = 0
     
@@ -174,40 +208,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
     
     
-    
-    enum tappedButton {
-        case leftButton, centerButton, rightButton
-    }
-    
-    private func changeGridAndMarkButton(_ display: tappedButton){
-        switch display {
-        case .leftButton :
-            leftButtonIsSelected.isHidden = false
-            leftButtonGrid.isHidden = false
-            centerButtonIsSelected.isHidden = true
-            centerButtonGrid.isHidden = true
-            rightButtonIsSelected.isHidden = true
-            rightButtonGrid.isHidden = true
-            
-        case .centerButton :
-            centerButtonIsSelected.isHidden = false
-            centerButtonGrid.isHidden = false
-            rightButtonIsSelected.isHidden = true
-            leftButtonIsSelected.isHidden = true
-            rightButtonGrid.isHidden = true
-            leftButtonGrid.isHidden = true
-            
-        case .rightButton :
-            rightButtonIsSelected.isHidden = false
-            rightButtonGrid.isHidden = false
-            centerButtonIsSelected.isHidden = true
-            centerButtonGrid.isHidden = true
-            leftButtonIsSelected.isHidden = true
-            leftButtonGrid.isHidden = true
-        }
-    }
-    
-    
 //MARK: - Swipe method
     
 //L'utilisateur swipe en mode portrait ou en mode paysage.
@@ -224,20 +224,19 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
 //La translation de la grille pour quitter l'écran.
     private func animateSwipe(translationX x: CGFloat, y: CGFloat){
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.5) {
             self.centerButtonGrid.transform = CGAffineTransform(translationX: x, y: y)
             self.leftButtonGrid.transform = CGAffineTransform(translationX: x, y: y)
             self.rightButtonGrid.transform = CGAffineTransform(translationX: x, y: y)
-        }) { (completed) in
-            if completed {
-                self.imageShare()
-            }
+        } completion: { (Bool) in
+            self.imageShare()
         }
     }
     
     
+    
+//Genere l'image qui sera partagée
     private func imageShare(){
-        //Genere l'image qui sera partagée
         UIGraphicsBeginImageContext(centerButtonGrid.frame.size)
         UIGraphicsBeginImageContext(leftButtonGrid.frame.size)
         UIGraphicsBeginImageContext(rightButtonGrid.frame.size)
