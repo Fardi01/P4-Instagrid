@@ -49,44 +49,28 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //Swipe Up pour la grille du bouton centrale en mode Portrait
-        let swipeUpCenterGrid = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeAction(_:)))
-        swipeUpCenterGrid.direction = UISwipeGestureRecognizer.Direction.up
-        centerButtonGrid.addGestureRecognizer(swipeUpCenterGrid)
-        
-        //Swipe up pour la grille du bouton gauche en mode Portrait
-        let swipeUpLeftGrid = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeAction(_:)))
-        swipeUpLeftGrid.direction = UISwipeGestureRecognizer.Direction.up
-        leftButtonGrid.addGestureRecognizer(swipeUpLeftGrid)
 
-        //Swipe up pour la grille du bouton droit en mode Portrait
-        let swipeUpRightGrid = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeAction(_:)))
-        swipeUpRightGrid.direction = UISwipeGestureRecognizer.Direction.up
-        rightButtonGrid.addGestureRecognizer(swipeUpRightGrid)
+        //Swipe up portrait mode
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeAction(_:)))
+        swipeUp.direction = UISwipeGestureRecognizer.Direction.up
+        leftButtonGrid.addGestureRecognizer(swipeUp)
+        rightButtonGrid.addGestureRecognizer(swipeUp)
+        centerButtonGrid.addGestureRecognizer(swipeUp)
+        view.addGestureRecognizer(swipeUp)
         
         
-        
-        //Swipe left pour la grille du bouton central en mode paysage
-        let swipeLeftCenterGrid = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeAction(_:)))
-        swipeLeftCenterGrid.direction = UISwipeGestureRecognizer.Direction.left
-        centerButtonGrid.addGestureRecognizer(swipeLeftCenterGrid)
-        
-        //Swipe left pour la grille du bouton gauche en mode paysage
-        let swipeLeftLeftGrid = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeAction(_:)))
-        swipeLeftLeftGrid.direction = UISwipeGestureRecognizer.Direction.left
-        leftButtonGrid.addGestureRecognizer(swipeLeftLeftGrid)
-        
-        //Swipe left pour la grille du bouton droite en mode paysage
-        let swipeLeftRightGrid = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeAction(_:)))
-        swipeLeftRightGrid.direction = UISwipeGestureRecognizer.Direction.left
-        rightButtonGrid.addGestureRecognizer(swipeLeftRightGrid)
-        
+        //Swipe left Landscape mode
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeAction(_:)))
+        swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
+        rightButtonGrid.addGestureRecognizer(swipeLeft)
+        leftButtonGrid.addGestureRecognizer(swipeLeft)
+        centerButtonGrid.addGestureRecognizer(swipeLeft)
+        view.addGestureRecognizer(swipeLeft)
     }
     
 
     
-//MARK: - Switch view buttons
+//MARK: - Switch Grid buttons
     
 //Quand l'utilisateur clique sur 1 des boutons : la grille change et le bouton est marqué !
     @IBAction func didTapLeftButton() {
@@ -215,10 +199,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         if UIDevice.current.orientation.isLandscape {
             sender.direction = .left
                 animateSwipe(translationX: -view.frame.width, y: 0)
+            print("Swipe ok")
         } else {
             sender.direction = .up
-
             animateSwipe(translationX: 0, y: -view.frame.height)
+            print("Swipe ok")
         }
     }
     
@@ -228,6 +213,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             self.centerButtonGrid.transform = CGAffineTransform(translationX: x, y: y)
             self.leftButtonGrid.transform = CGAffineTransform(translationX: x, y: y)
             self.rightButtonGrid.transform = CGAffineTransform(translationX: x, y: y)
+            self.arrowUpImage.transform = CGAffineTransform(translationX: x, y: y)
+            self.arrowLeftImage.transform = CGAffineTransform(translationX: x, y: y)
+            self.swipUpLabel.transform = CGAffineTransform(translationX: x, y: y)
         } completion: { (Bool) in
             self.imageShare()
         }
@@ -272,6 +260,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             self.centerButtonGrid.transform = .identity
             self.leftButtonGrid.transform = .identity
             self.rightButtonGrid.transform = .identity
+            self.arrowUpImage.transform = .identity
+            self.arrowLeftImage.transform = .identity
+            self.swipUpLabel.transform = .identity
         }, completion: nil)
     }
     

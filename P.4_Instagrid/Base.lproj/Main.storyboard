@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -316,7 +316,7 @@
                                 </connections>
                             </view>
                             <stackView opaque="NO" contentMode="scaleAspectFill" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="JYe-IH-TYU" userLabel="Buttons Stack View">
-                                <rect key="frame" x="37.666666666666629" y="678" width="300" height="80"/>
+                                <rect key="frame" x="37.666666666666657" y="678" width="300" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6y-hr-Ayn" userLabel="Left Button">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -371,14 +371,14 @@
                                 <variation key="heightClass=compact-widthClass=regular" axis="vertical"/>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Selected" translatesAutoresizingMaskIntoConstraints="NO" id="dMr-GR-BOr" userLabel="Center Button is Selected">
-                                <rect key="frame" x="147.66666666666663" y="678" width="80" height="80"/>
+                                <rect key="frame" x="147.66666666666666" y="678" width="80" height="80"/>
                             </imageView>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Selected" translatesAutoresizingMaskIntoConstraints="NO" id="AtC-1q-QOe" userLabel="Right Button is Selected">
                                 <rect key="frame" x="257.66666666666669" y="678" width="80" height="80"/>
                                 <variation key="heightClass=compact" hidden="YES"/>
                             </imageView>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Selected" translatesAutoresizingMaskIntoConstraints="NO" id="oCC-uC-Zkv" userLabel="Left Button is Selected">
-                                <rect key="frame" x="37.666666666666629" y="678" width="80" height="80"/>
+                                <rect key="frame" x="37.666666666666657" y="678" width="80" height="80"/>
                                 <variation key="heightClass=compact" hidden="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" image="Arrow Left" translatesAutoresizingMaskIntoConstraints="NO" id="x1c-Ho-R9f">
@@ -538,6 +538,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="Ld7-40-W5N">
+                    <connections>
+                        <outlet property="delegate" destination="8bC-Xf-vdC" id="uc9-zR-HSR"/>
+                    </connections>
+                </swipeGestureRecognizer>
                 <swipeGestureRecognizer direction="up" id="n0i-fA-lNp" userLabel="Center Grid Swipe Gesture Recognizer">
                     <connections>
                         <action selector="testeSwipe:" destination="BYZ-38-t0r" id="BUV-Za-Ars"/>
