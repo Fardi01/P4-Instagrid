@@ -3,8 +3,6 @@
 //  P.4_Instagrid
 //
 //  Created by fardi Clk on 17/03/2021.
-//
-// ⚠️ Le fichier teste !
 
 import UIKit
 
@@ -17,13 +15,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var arrowLeftImage: UIImageView!
     @IBOutlet weak var gridStackView: UIStackView!
     
-//Pour Les boutons de switch entre les 3 vues
+//Les 3 boutons de changement de la vue
     @IBOutlet weak var rightButton: UIButton!
     @IBOutlet weak var centerButton: UIButton!
     @IBOutlet weak var leftButton: UIButton!
     
-// Les vue superieurs de la grille
-    @IBOutlet weak var topStackView: UIStackView!
+// Les vues superieurs de la grille
     @IBOutlet weak var topLeftView: UIView!
     @IBOutlet weak var topLeftImage: UIImageView!
     @IBOutlet weak var topRightView: UIView!
@@ -31,7 +28,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var topLeftButton: UIButton!
     
 //Les vues inferieurs de la grille
-    @IBOutlet weak var bottomStackView: UIStackView!
     @IBOutlet weak var bottomleftView: UIView!
     @IBOutlet weak var bottomLeftImage: UIImageView!
     @IBOutlet weak var bottomRightView: UIView!
@@ -45,16 +41,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Swipe Up pour la grille du bouton centrale en mode Portrait
+        //Swipe Up, Portraits mode
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(_:)))
         swipeUp.direction = UISwipeGestureRecognizer.Direction.up
-        gridStackView.addGestureRecognizer(swipeUp)
+        //gridStackView.addGestureRecognizer(swipeUp)
         view.addGestureRecognizer(swipeUp)
         
-        //Swipe Up pour la grille du bouton centrale en mode Portrait
+        //Swipe left, Landscape mode
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(_:)))
         swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
-        gridStackView.addGestureRecognizer(swipeLeft)
+        //gridStackView.addGestureRecognizer(swipeLeft)
         view.addGestureRecognizer(swipeLeft)
     }
     
@@ -81,33 +77,15 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
     private func changeGridLeftButton(){
         topRightView.isHidden = true
-        topLeftView.frame.size.width = 270
-        topLeftButton.frame.size.width = 270
-        topLeftImage.frame.size.width = 270
-        bottomRightView.frame.size.width = 127
-        bottomRightButton.frame.size.width = 127
-        bottomRightImage.frame.size.width = 127
         bottomleftView.isHidden = false
     }
     
     private func changeGridCenterButton(){
         bottomleftView.isHidden = true
-        bottomRightView.frame.size.width = 270
-        bottomRightButton.frame.size.width = 270
-        bottomRightImage.frame.size.width = 270
-        topLeftView.frame.size.width = 127
-        topLeftButton.frame.size.width = 127
-        topLeftImage.frame.size.width = 127
         topRightView.isHidden = false
     }
     
     private func changeGridRightButton(){
-        topLeftView.frame.size.width = 127
-        topLeftButton.frame.size.width = 127
-        topLeftImage.frame.size.width = 127
-        bottomRightView.frame.size.width = 127
-        bottomRightButton.frame.size.width = 127
-        bottomRightImage.frame.size.width = 127
         bottomleftView.isHidden = false
         topRightView.isHidden = false
     }
@@ -158,7 +136,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         pickerImageDelegate()
     }
     
-// Ouvrir la bibliothèque d'image de l'utilisateur !
+    
    func pickerImageDelegate(){
         let image = UIImagePickerController()
         image.sourceType = .photoLibrary
@@ -167,7 +145,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         self.present(image, animated: true)
     }
 
-// J'affecte l'image à la vue correspondante.
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
             if index == 1 {
@@ -190,7 +168,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
 //MARK: - Swipe Animation
     
-//L'utilisateur swipe en mode portrait ou en mode paysage.
+
     @objc func swipeAction(_ sender: UISwipeGestureRecognizer){
         if UIDevice.current.orientation.isLandscape {
             sender.direction = .left
@@ -202,7 +180,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         }
     }
     
-//La translation de la grille pour quitter l'écran.
+
     private func animateSwipe(translationX x: CGFloat, y: CGFloat){
         UIView.animate(withDuration: 0.5) {
             self.gridStackView.transform = CGAffineTransform(translationX: x, y: y)
@@ -216,16 +194,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     
     
-//Genere l'image qui sera partagée
     private func imageShare(){
         UIGraphicsBeginImageContext(gridStackView.frame.size)
         gridStackView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
+        
         let activityController = UIActivityViewController(activityItems: [image!], applicationActivities: nil)
         activityController.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed:
         Bool, arrayReturnedItems: [Any]?, error: Error?) in
             if completed {
-                print("share completed")
+                print("share done")
                 self.animateBackToCenter()
                 return
             } else {
@@ -237,7 +215,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
     
     
-//Pour faire revenir la grille à son emplacement initiale.
     private func animateBackToCenter(){
         UIView.animate(withDuration: 0.5, animations: {
             self.gridStackView.transform = .identity
