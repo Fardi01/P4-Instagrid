@@ -8,26 +8,26 @@ import UIKit
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-//MARK: - Outlets
+// MARK: - Outlets
     
     @IBOutlet weak var swipUpLabel: UILabel!
     @IBOutlet weak var arrowUpImage: UIImageView!
     @IBOutlet weak var arrowLeftImage: UIImageView!
     @IBOutlet weak var gridStackView: UIStackView!
     
-//Les 3 boutons de changement de la vue
+// Change Grid Buttons
     @IBOutlet weak var rightButton: UIButton!
     @IBOutlet weak var centerButton: UIButton!
     @IBOutlet weak var leftButton: UIButton!
     
-// Les vues superieurs de la grille
+// Top Stack View
     @IBOutlet weak var topLeftView: UIView!
     @IBOutlet weak var topLeftImage: UIImageView!
     @IBOutlet weak var topRightView: UIView!
     @IBOutlet weak var topRightImage: UIImageView!
     @IBOutlet weak var topLeftButton: UIButton!
     
-//Les vues inferieurs de la grille
+// Bottom Stack View
     @IBOutlet weak var bottomleftView: UIView!
     @IBOutlet weak var bottomLeftImage: UIImageView!
     @IBOutlet weak var bottomRightView: UIView!
@@ -36,27 +36,25 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     
     
-//MARK: - View Methods
+// MARK: - View Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Swipe Up, Portraits mode
+        // Swipe Up, Portraits mode
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(_:)))
         swipeUp.direction = UISwipeGestureRecognizer.Direction.up
-        //gridStackView.addGestureRecognizer(swipeUp)
         view.addGestureRecognizer(swipeUp)
         
-        //Swipe left, Landscape mode
+        // Swipe left, Landscape mode
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(_:)))
         swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
-        //gridStackView.addGestureRecognizer(swipeLeft)
         view.addGestureRecognizer(swipeLeft)
     }
     
 
     
-//MARK: - Switch Grid buttons
+// MARK: - Change Grid View
 
     @IBAction func didTappedLeftButton(_ sender: UIButton) {
         selectedButton(tappedButton.leftButton)
@@ -112,7 +110,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
     
     
-//MARK: - Image Picker
+// MARK: - Image Picker
     
     var index = 0
     
@@ -166,7 +164,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
     
     
-//MARK: - Swipe Animation
+// MARK: - Swipe Animation
     
 
     @objc func swipeAction(_ sender: UISwipeGestureRecognizer){

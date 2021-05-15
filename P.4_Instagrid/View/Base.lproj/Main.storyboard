@@ -355,10 +355,6 @@
                         <action selector="testeSwipe:" destination="BYZ-38-t0r" id="BUV-Za-Ars"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="LAe-Ho-sJ3">
-                    <rect key="frame" x="0.0" y="0.0" width="127" height="127"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="92.364532019704441"/>
         </scene>

@@ -41,13 +41,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D62DAD46263B4CAB001739A4 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		D62DAD47263B4CB5001739A4 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,7 +77,6 @@
 		D631EA31260177F600F5AA7D /* P.4_Instagrid */ = {
 			isa = PBXGroup;
 			children = (
-				D62DAD46263B4CAB001739A4 /* Model */,
 				D62DAD47263B4CB5001739A4 /* View */,
 				D62DAD48263B4CBE001739A4 /* Controller */,
 				D631EA5026017FBB00F5AA7D /* Support Files */,
