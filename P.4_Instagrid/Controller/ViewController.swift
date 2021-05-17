@@ -33,8 +33,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet weak var bottomRightView: UIView!
     @IBOutlet weak var bottomRightImage: UIImageView!
     @IBOutlet weak var bottomRightButton: UIButton!
+
     
-    
+    var selectedImageView: UIImageView?
     
 // MARK: - View Methods
     
@@ -112,25 +113,25 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
 // MARK: - Image Picker
     
-    var index = 0
+
     
     @IBAction func topLeftButton(_ sender: UIButton) {
-        index = 1
+        selectedImageView = topLeftImage
         pickerImageDelegate()
     }
     
     @IBAction func topRightButton(_ sender: UIButton) {
-        index = 2
+        selectedImageView = topRightImage
         pickerImageDelegate()
     }
     
     @IBAction func bottomLeftButton(_ sender: UIButton) {
-        index = 3
+        selectedImageView = bottomLeftImage
         pickerImageDelegate()
     }
     
     @IBAction func bottomRightButton(_ sender: UIButton) {
-        index = 4
+        selectedImageView = bottomRightImage
         pickerImageDelegate()
     }
     
@@ -146,15 +147,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
-            if index == 1 {
-                topLeftImage.image = image
-            }else if index == 2{
-                topRightImage.image = image
-            }else if index == 3{
-                bottomLeftImage.image = image
-            }else if index == 4{
-                bottomRightImage.image = image
-            }
+            selectedImageView?.image = image
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -186,13 +179,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             self.arrowLeftImage.transform = CGAffineTransform(translationX: x, y: y)
             self.swipUpLabel.transform = CGAffineTransform(translationX: x, y: y)
         } completion: { (Bool) in
-            self.imageShare()
+            self.shareImage()
         }
     }
     
     
     
-    private func imageShare(){
+    private func shareImage(){
         UIGraphicsBeginImageContext(gridStackView.frame.size)
         gridStackView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
@@ -200,14 +193,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         let activityController = UIActivityViewController(activityItems: [image!], applicationActivities: nil)
         activityController.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed:
         Bool, arrayReturnedItems: [Any]?, error: Error?) in
-            if completed {
-                print("share done")
-                self.animateBackToCenter()
-                return
-            } else {
-                print("cancel")
-                self.animateBackToCenter()
-            }
+            self.animateBackToCenter()
         }
         present(activityController, animated: true, completion: nil)
     }
